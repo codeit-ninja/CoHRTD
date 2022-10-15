@@ -1,23 +1,23 @@
 {
-  "env": {
-    "browser": true,
-    "node": false
-  },
-  "extends": [
-    /** @see https://eslint.vuejs.org/rules/ */
-    "plugin:vue/vue3-recommended"
-  ],
-  "parserOptions": {
-    "parser": "@typescript-eslint/parser",
-    "ecmaVersion": 12,
-    "sourceType": "module"
-  },
-  "rules": {
-    "comma-dangle": "off",
-    "semi": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/ban-ts-comment": "off",
-    "@typescript-eslint/no-empty-interface": "off",
-    "no-empty": "off"
-  }
+    "env": {
+        "browser": true,
+        "node": false
+    },
+    "extends": [
+        /** @see https://eslint.vuejs.org/rules/ */
+        "plugin:vue/vue3-recommended"
+    ],
+    "parserOptions": {
+        "parser": "@typescript-eslint/parser",
+        "ecmaVersion": 12,
+        "sourceType": "module"
+    },
+    "rules": {
+        "comma-dangle": "off",
+        "semi": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-empty-interface": "off",
+        "no-empty": "off"
+    }
 }

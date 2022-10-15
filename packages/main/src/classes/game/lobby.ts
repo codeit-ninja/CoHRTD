@@ -1,57 +1,62 @@
-import type { CoHPlayerWithStats, CoHPlayerPopulated, CoHPlayerSteamInfo, CoHGameState } from 'App/Core/Game';
-import { app } from 'core';
-import { filter, groupBy } from 'lodash';
+import type {
+    CoHPlayerWithStats,
+    CoHPlayerPopulated,
+    CoHPlayerSteamInfo,
+    CoHGameState,
+} from 'App/Core/Game';
+import {app} from 'core';
+import {filter, groupBy} from 'lodash';
 
 export default class Lobby {
     /**
      * Current state of the game
-     * 
+     *
      * @property
      * @public
      */
-    public state: 'OFFLINE'|'ONLINE'|'IN_GAME' = 'OFFLINE';
+    public state: 'OFFLINE' | 'ONLINE' | 'IN_GAME' = 'OFFLINE';
     /**
      * Has game started?
-     * 
+     *
      * @property
      * @public
      */
     public started = false;
     /**
      * Current map
-     * 
+     *
      * @property
      * @public
      */
     public map?: string;
     /**
      * Array with players in the lobby
-     * 
+     *
      * @property
      * @public
      */
     public players: Partial<CoHPlayerWithStats>[] = [];
     /**
      * Promises to resolve
-     * 
+     *
      * @property
      * @protected
      */
     protected promises: Promise<any>[] = [];
     /**
      * Temp arrays to hold raw player data
-     * 
+     *
      * @property
      * @protected
      */
     protected temp = {
         playersPopulated: [] as CoHPlayerPopulated[],
-        playersSteamInfo: [] as CoHPlayerSteamInfo[]
-    }
+        playersSteamInfo: [] as CoHPlayerSteamInfo[],
+    };
     /**
      * Track current index when we set the CPU
      * difficulty type (easy, normal, hard, expert)
-     * 
+     *
      * @property
      * @protected
      */
@@ -59,19 +64,19 @@ export default class Lobby {
 
     /**
      * Change the current state of the game
-     * 
-     * @param state 
+     *
+     * @param state
      */
-    public setState(state: 'ONLINE'|'OFFLINE'|'IN_GAME') {
+    public setState(state: 'ONLINE' | 'OFFLINE' | 'IN_GAME') {
         this.state = state;
     }
 
     /**
      * Set map
-     * 
-     * @param map 
+     *
+     * @param map
      */
-     public setMap(map: string) {
+    public setMap(map: string) {
         this.map = map;
     }
 
@@ -97,13 +102,13 @@ export default class Lobby {
     /**
      * Add populated player into a temp array
      * to evaluate later.
-     * 
+     *
      * @param player
-     * @returns {void} 
+     * @returns {void}
      */
-    public addTempPopulatedPlayer( player: CoHPlayerPopulated ) {        
+    public addTempPopulatedPlayer(player: CoHPlayerPopulated) {
         // Somehow already exists, skipping
-        if( this.temp.playersPopulated.find(p => p.playerIndex === player.playerIndex) ) {
+        if (this.temp.playersPopulated.find(p => p.playerIndex === player.playerIndex)) {
             return;
         }
 
@@ -113,13 +118,13 @@ export default class Lobby {
     /**
      * Add players steam info into a temp array
      * to evaluate later.
-     * 
-     * @param player 
+     *
+     * @param player
      * @returns {void}
      */
-    public addTempPlayerSteamInfo( player: CoHPlayerSteamInfo ) {
+    public addTempPlayerSteamInfo(player: CoHPlayerSteamInfo) {
         // Somehow already exists, skipping
-        if( this.temp.playersSteamInfo.find(p => p.steamId === player.steamId) ) {
+        if (this.temp.playersSteamInfo.find(p => p.steamId === player.steamId)) {
             return;
         }
 
@@ -128,29 +133,31 @@ export default class Lobby {
 
     /**
      * Is fired on `game-started` event.
-     * 
+     *
      * Creates a new lobby and fetches players.
      */
     public async evaluateLobby() {
         this.promises = this.temp.playersSteamInfo.map(async p => {
             try {
                 const [profile, stats] = await this.fetchPlayerData(p.steamId);
-                const player = this.temp.playersPopulated.find(p => p.playerId === profile.profileId)
-                
-                if( ! player || ! profile ) {
+                const player = this.temp.playersPopulated.find(
+                    p => p.playerId === profile.profileId,
+                );
+
+                if (!player || !profile) {
                     return;
                 }
 
-                this.players.push({ ...profile, ...p, ...player, stats });
-            } catch(e) {
+                this.players.push({...profile, ...p, ...player, stats});
+            } catch (e) {
                 console.log(e);
             }
-        })
-        
+        });
+
         try {
             // Wait for player info
             await Promise.all(this.promises);
-        } catch(e) {
+        } catch (e) {
             console.log('Something went wrong resolving all promises.');
         }
 
@@ -174,8 +181,8 @@ export default class Lobby {
 
     /**
      * Fetch player data from relic api
-     * 
-     * @param steamId 
+     *
+     * @param steamId
      * @returns {Promise<[memberProfile, LeaderboardStats]>}
      */
     public async fetchPlayerData(steamId: string) {
@@ -184,18 +191,21 @@ export default class Lobby {
 
     /**
      * Returns current state of the game
-     * 
+     *
      * @returns {CoHGameState}
      */
-     public getGameInfo(): CoHGameState {
+    public getGameInfo(): CoHGameState {
         return {
             state: this.state,
             started: this.started,
             players: this.players,
             map: this.map,
             get teams() {
-                return groupBy(this.players.filter(player => player.type !== 6), 'team')
-            }
-        }
+                return groupBy(
+                    this.players.filter(player => player.type !== 6),
+                    'team',
+                );
+            },
+        };
     }
 }

@@ -1,28 +1,28 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import { settings } from '/@/store/settings';
+import {createRouter, createWebHashHistory} from 'vue-router';
+import {settings} from '/@/store/settings';
 
 import DashboardPage from './pages/DashboardPage.vue';
 import ConfigurationPage from './pages/ConfigurationPage.vue';
 import CurrentMatch from './pages/CurrentMatch.vue';
 
 export const routes = [
-    { 
-        name: 'Dashboard', 
-        path: '/', 
+    {
+        name: 'Dashboard',
+        path: '/',
         component: DashboardPage,
-        layout: async () => await import('./layouts/DefaultLayout.vue')
+        layout: async () => await import('./layouts/DefaultLayout.vue'),
     },
     {
-        name: 'CurrentMatch', 
-        path: '/current-game', 
+        name: 'CurrentMatch',
+        path: '/current-game',
         component: CurrentMatch,
-        layout: async () => await import('./layouts/DefaultLayout.vue')
+        layout: async () => await import('./layouts/DefaultLayout.vue'),
     },
     {
-        name: 'Configure', 
-        path: '/configure', 
+        name: 'Configure',
+        path: '/configure',
         component: ConfigurationPage,
-        layout: async () => await import('./layouts/EmptyLayout.vue')
+        layout: async () => await import('./layouts/EmptyLayout.vue'),
     },
 ];
 
@@ -32,17 +32,16 @@ const router = createRouter({
     routes, // short for `routes: routes`
 });
 
-router.beforeEach( async to => {
-    if( 
+router.beforeEach(async to => {
+    if (
         // Make sure app is configured
-        ! settings.configured &&
-    
+        !settings.configured &&
         // ❗️ Avoid an infinite redirect
         to.name !== 'Configure'
     ) {
         // Redirect to the configure page
-        return { name: 'Configure' }
+        return {name: 'Configure'};
     }
-})
+});
 
 export default router;

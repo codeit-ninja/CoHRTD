@@ -1,6 +1,6 @@
-import { app } from 'electron';
+import {app} from 'electron';
 import './security-restrictions';
-import { restoreOrCreateWindow } from '/@/mainWindow';
+import {restoreOrCreateWindow} from '/@/mainWindow';
 
 import 'config/axios';
 import 'core';
@@ -38,8 +38,7 @@ app.on('activate', restoreOrCreateWindow);
 /**
  * Create the application window when the background process is ready.
  */
-app
-    .whenReady()
+app.whenReady()
     .then(restoreOrCreateWindow)
     .catch(e => console.error('Failed create window:', e));
 
@@ -62,9 +61,8 @@ app
  * Check for new version of the application - production mode only.
  */
 if (import.meta.env.PROD) {
-    app
-        .whenReady()
+    app.whenReady()
         .then(() => import('electron-updater'))
-        .then(({ autoUpdater }) => autoUpdater.checkForUpdatesAndNotify())
+        .then(({autoUpdater}) => autoUpdater.checkForUpdatesAndNotify())
         .catch(e => console.error('Failed check updates:', e));
 }

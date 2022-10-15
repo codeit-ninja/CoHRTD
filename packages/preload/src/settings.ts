@@ -1,4 +1,4 @@
-import { ipcRenderer } from 'electron';
+import {ipcRenderer} from 'electron';
 
 export function getSettings() {
     return ipcRenderer.invoke('get-settings');

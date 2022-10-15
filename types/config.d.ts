@@ -1,6 +1,6 @@
 declare module 'App/Core/Config' {
-    import type { HelixPrivilegedUser } from '@twurple/api';
-    import type { Profile } from 'Relic';
+    import type {HelixPrivilegedUser} from '@twurple/api';
+    import type {Profile} from 'Relic';
     /*
     |--------------------------------------------------------------------------
     | App configuration
@@ -44,11 +44,11 @@ declare module 'App/Core/Config' {
     interface AppState {
         auth: {
             isAuthenticated: boolean;
-            user: HelixPrivilegedUser|null
-        },
+            user: HelixPrivilegedUser | null;
+        };
         relic: {
-            user: Profile|null,
-            stats: LeaderboardStats[]|null;
-        }
+            user: Profile | null;
+            stats: LeaderboardStats[] | null;
+        };
     }
 }

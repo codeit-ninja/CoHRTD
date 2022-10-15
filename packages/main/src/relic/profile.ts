@@ -7,6 +7,6 @@ export default class Profile {
         public xp: number,
         public level: number,
         public leaderboardregionId: number,
-        public country: string
+        public country: string,
     ) {}
 }

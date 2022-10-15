@@ -1,5 +1,5 @@
-import type { AuthUser } from 'App/Core/Auth';
-import { isAuthenticated, getCurrentUser } from '#preload';
+import type {AuthUser} from 'App/Core/Auth';
+import {isAuthenticated, getCurrentUser} from '#preload';
 
 export default class Auth {
     public user?: AuthUser;
@@ -9,12 +9,12 @@ export default class Auth {
     async login() {
         this.isLoggedIn = await isAuthenticated();
 
-        if( this.isLoggedIn ) {
+        if (this.isLoggedIn) {
             this.user = await getCurrentUser();
         }
     }
 
     async isAuthenticated() {
-        return await isAuthenticated()
+        return await isAuthenticated();
     }
 }

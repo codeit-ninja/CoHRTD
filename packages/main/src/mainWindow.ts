@@ -1,6 +1,6 @@
-import { app, BrowserWindow } from 'electron';
-import { join } from 'path';
-import { URL } from 'url';
+import {app, BrowserWindow} from 'electron';
+import {join} from 'path';
+import {URL} from 'url';
 
 async function createWindow() {
     const browserWindow = new BrowserWindow({
@@ -15,7 +15,7 @@ async function createWindow() {
         width: 1400,
         height: 800,
         x: 50,
-        y: 50
+        y: 50,
     });
 
     /**

@@ -10,15 +10,19 @@
         <div class="col-1"><span>Streak</span></div>
     </div>
     <div class="stats-container">
-        <StatGroup v-for="(stat, id) in stats" :key="id" :stats="stat" />
+        <StatGroup
+            v-for="(stat, id) in stats"
+            :key="id"
+            :stats="stat"
+        />
     </div>
 </template>
 <script lang="ts" setup>
-    import { computed } from 'vue';
-    import { orderBy } from 'lodash';
-    import { useAuthStore } from 'store/auth';
-    import StatGroup from './stats/StatGroup.vue';
+import {computed} from 'vue';
+import {orderBy} from 'lodash';
+import {useAuthStore} from 'store/auth';
+import StatGroup from './stats/StatGroup.vue';
 
-    const { user } = useAuthStore();
-    const stats = computed(() => orderBy(user?.stats, ['rank', 'leaderboardId'], ['asc', 'asc'] ));
+const {user} = useAuthStore();
+const stats = computed(() => orderBy(user?.stats, ['rank', 'leaderboardId'], ['asc', 'asc']));
 </script>

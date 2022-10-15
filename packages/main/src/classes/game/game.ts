@@ -12,11 +12,7 @@ export default class Game {
      * @param logParser
      * @param lobby
      */
-    public constructor(
-        public logPath: string,
-        public logParser?: LogParser,
-        public lobby?: Lobby,
-    ) {
+    public constructor(public logPath: string, public logParser?: LogParser, public lobby?: Lobby) {
         this.isRunning = true;
         // setInterval( async () => this.isRunning = await this.isGameRunning('RelicCOH'), 1000);
     }
@@ -24,24 +20,28 @@ export default class Game {
     protected async isGameRunning(processName: string): Promise<boolean> {
         const cmd = (() => {
             switch (process.platform) {
-                case 'win32': return 'tasklist'
-                case 'darwin': return 'ps -ax | grep ${processName}'
-                case 'linux': return 'ps -A'
-                default: return false
+                case 'win32':
+                    return 'tasklist';
+                case 'darwin':
+                    return 'ps -ax | grep ${processName}';
+                case 'linux':
+                    return 'ps -A';
+                default:
+                    return false;
             }
-        })()
+        })();
 
-        if( ! cmd ) {
+        if (!cmd) {
             return false;
         }
 
         return new Promise((resolve, reject) => {
             child_process.exec(cmd, (err: Error | null, stdout: string) => {
-                if (err) reject(err)
+                if (err) reject(err);
 
-                resolve(stdout.toLowerCase().indexOf(processName.toLowerCase()) > -1)
-            })
-        })
+                resolve(stdout.toLowerCase().indexOf(processName.toLowerCase()) > -1);
+            });
+        });
     }
 
     /**
@@ -52,11 +52,11 @@ export default class Game {
      * @param running
      */
     public set isRunning(running: boolean) {
-        if( running && ! this.logParser ) {
+        if (running && !this.logParser) {
             this.logParser = LogParser.load(this.logPath);
         }
 
-        if( ! running && this.logParser ) {
+        if (!running && this.logParser) {
             this.logParser.clear();
 
             delete this.logParser;

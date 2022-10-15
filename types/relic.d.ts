@@ -1,5 +1,5 @@
 declare module 'App/Core/Relic' {
-    interface MemberProfileResponse { 
+    interface MemberProfileResponse {
         profile_id: number;
         name: string;
         alias: string;
@@ -27,7 +27,7 @@ declare module 'App/Core/Relic' {
         wins: number;
         losses: number;
         streak: number;
-        disputes:number;
+        disputes: number;
         drops: number;
         rank: number;
         ranktotal: number;
@@ -43,7 +43,7 @@ declare module 'App/Core/Relic' {
         wins: number;
         losses: number;
         streak: number;
-        disputes:number;
+        disputes: number;
         drops: number;
         rank: number;
         ranktotal: number;

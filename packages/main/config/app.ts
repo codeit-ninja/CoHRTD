@@ -1,6 +1,6 @@
-import type { AppConfig } from 'App/Core/Config';
+import type {AppConfig} from 'App/Core/Config';
 
-import { app } from 'electron';
+import {app} from 'electron';
 
 /**
  * Feel free to let me know via PR, if you find something broken in this config
@@ -28,6 +28,6 @@ export const appConfig: AppConfig = {
     |
     */
     settingsPath: app.getAppPath() + '/settings.json',
-}
+};
 
 export default appConfig;
