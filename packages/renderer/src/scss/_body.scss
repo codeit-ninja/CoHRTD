@@ -1,0 +1,21 @@
+body {
+    overflow-x: hidden;
+
+    &::before {
+        position: absolute;
+        content: " ";
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+
+        background-color: $body-bg;
+        background-image: url('./bg-image.png');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        background-blend-mode: luminosity;
+        z-index: -1;
+        opacity: .35;
+    }
+}

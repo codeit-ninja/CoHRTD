@@ -1,0 +1,11 @@
+.img {
+    &-thumbnail {
+        border: 2px solid lighten($body-bg, 15);
+    }
+}
+
+.versus-vector {
+    opacity: 1;
+    filter: drop-shadow(0 0 48px rgba($white, .4));
+    mix-blend-mode: difference;
+}

@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "target": "esnext",
+    "sourceMap": false,
+    "moduleResolution": "Node",
+    "skipLibCheck": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "/@/*": ["./src/*"],
+      "core": ["./src/core.ts"],
+      "contracts/*": ["./contracts/*"],
+      "App/Core/Exceptions/*": ["./src/exceptions/*"],
+      "@App/Types/*": ["../../packages/types/*"]
+    }
+  },
+  "include": ["config/*.ts", "src/**/*.ts", "../../types/**/*.d.ts"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+}

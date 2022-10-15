@@ -1,0 +1,13 @@
+header {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+
+    h1 {
+        margin-bottom: 0;
+        font-size: 1.3rem;
+        font-weight: 300;
+        text-transform: uppercase;
+        color: $primary;
+    }
+}

@@ -1,0 +1,30 @@
+.sticky-toast {
+    bottom: 1rem;
+
+    @extend .sticky-bottom;
+    @extend .d-flex;
+    @extend .justify-content-center;
+}
+
+.toast {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .8rem;
+    font-weight: 500;
+    width: 100%;
+
+    &-container {
+        bottom: 1rem;
+        width: calc(100% - 2rem);
+    }
+
+    &-success {
+        background-color: darken($body-bg, 5);
+        border: 2px solid $success;
+    }
+
+    &-danger {
+        background-color: darken($body-bg, 5);
+        border: 2px solid $danger;
+    }
+}

@@ -1,0 +1,19 @@
+* {
+    scrollbar-width: auto;
+    scrollbar-color: $sidebar-bg;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+    background: lighten($sidebar-bg, 2);
+}
+
+*::-webkit-scrollbar-thumb {
+    background-color: $sidebar-bg;
+    border-radius: 0;
+    border: none;
+}

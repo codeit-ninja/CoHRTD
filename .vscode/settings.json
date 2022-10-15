@@ -1,0 +1,12 @@
+{
+    "emmet.includeLanguages": {
+        "postcss": "css"
+    },
+    "files.associations": {
+        "*.css": "postcss"
+    },
+    "css.styleSheets": [
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+    ],
+    "vue3snippets.enable-compile-vue-file-on-did-save-code": false
+}

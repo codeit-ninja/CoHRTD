@@ -1,0 +1,17 @@
+.table > :not(caption) > * > * {
+    background-color: darken($body-bg, 0);
+}
+
+.table > :not(caption) th {
+    background-color: transparent;
+    font-weight: 600;
+    font-size: .8rem;
+    color: $text-muted;
+    text-transform: uppercase;
+    border-bottom: 3px solid $primary;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: transparent;
+    background-color: lighten($body-bg, 3);
+}

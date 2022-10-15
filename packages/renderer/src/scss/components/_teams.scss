@@ -1,0 +1,14 @@
+.teams {
+    padding: 2.5rem;
+    border-radius: .75rem;
+
+    @include gradient-x(rgba($info, .2), rgba($danger, .2), $start-percent: 0%, $end-percent: 100%);
+
+    .stats-group-rank-icon {
+        max-width: 32px;
+    }
+
+    &-player-name {
+        color: $gray-400;
+    }
+}

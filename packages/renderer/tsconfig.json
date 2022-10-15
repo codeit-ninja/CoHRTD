@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "module": "esnext",
+        "target": "esnext",
+        "sourceMap": false,
+        "moduleResolution": "Node",
+        "skipLibCheck": true,
+        "strict": true,
+        "isolatedModules": true,
+        "jsx": "preserve",
+        "types": ["node"],
+        "baseUrl": ".",
+        "paths": {
+            "@App/Types/*": ["../../packages/types/*"],
+            "App/Core/Contracts/*": ["../main/contracts/*"],
+            "composables/*": ["./src/composables/*"],
+            "#preload": ["../preload/src/index"],
+            "types": ["./src/types"],
+            "store/*": ["./src/store/*"],
+            "/@/*": ["./src/*"]
+        },
+        "lib": ["ESNext", "dom", "dom.iterable"]
+    },
+    "include": [
+        "src/**/*.vue",
+        "src/**/*.ts",
+        "src/**/*.tsx",
+        "types/**/*.d.ts",
+        "../../types/**/*.d.ts"
+    ],
+    "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+}

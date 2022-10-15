@@ -1,0 +1,23 @@
+{
+  "env": {
+    "browser": true,
+    "node": false
+  },
+  "extends": [
+    /** @see https://eslint.vuejs.org/rules/ */
+    "plugin:vue/vue3-recommended"
+  ],
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "rules": {
+    "comma-dangle": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "vue/html-indent": ["error", 4],
+    "vue/html-self-closing": "off",
+    "vue/max-attributes-per-line": "off"
+  }
+}

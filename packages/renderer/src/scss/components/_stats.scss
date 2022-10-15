@@ -1,0 +1,75 @@
+.stats {
+    &-container {
+        max-height: 440px;
+        overflow: auto;
+    }
+
+    &-header {
+        position: sticky;
+        padding-bottom: 1rem;
+        top: 0;
+
+        span {
+            font-weight: 600;
+            font-size: .8rem;
+            text-transform: uppercase;
+        }
+    }
+
+    &-group {
+        background-color: rgba(darken($body-bg, 0), .5);
+        display: flex;
+        align-items: stretch;
+        color: lighten($body-bg, 48);
+        transition: all .12s ease-in-out;
+
+        &:nth-child(2n+2) {
+            background-color: rgba(darken($body-bg, 4), .5);
+            box-shadow: 0 0 15px darken($body-bg, 2);
+        }
+
+        &:hover {
+            color: $body-color;
+
+            [class^="col-"] {
+                &:nth-child(2) {
+                    color: $primary;
+                }
+            }
+
+            .stats-group-rank-icon {
+                filter: grayscale(0%);
+            }
+        }
+
+        &-rank-icon {
+            filter: grayscale(100%);
+        }
+    }
+
+    &-header,
+    &-group {
+        span {
+            display: flex;
+            height: 100%;
+            padding: .35rem .8rem;
+            align-items: center;
+
+            img {
+                max-width: 30px;
+                //height: 16px;
+            }
+        }
+
+        .text-center {
+            span {
+                justify-content: center;
+            }
+        }
+    }
+
+    &-rank-icon {
+        height: 35px;
+        width: 35px;
+    }
+}

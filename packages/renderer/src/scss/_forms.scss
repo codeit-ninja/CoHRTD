@@ -1,0 +1,27 @@
+.form {
+    &-label {
+        text-transform: uppercase;
+        font-size: .8rem;
+        font-weight: 600;
+        color: $gray-500;
+    }
+
+    &-control {
+        background-color: $dark;
+        border: none;
+        padding: .6rem .8rem;
+
+        &:focus {
+            box-shadow: none;
+            background-color: darken($dark, 2);
+        }
+    }
+}
+
+#configuration-form {
+    background-color: lighten($body-bg, 8);
+    padding: 2rem;
+    border-radius: $border-radius;
+
+    @extend .shadow;
+}
