@@ -1,58 +1,58 @@
-import type { User } from 'App/Core/Auth';
+import type {User} from 'App/Core/Auth';
 
-import { ApiClient, type HelixPrivilegedUser } from '@twurple/api';
-import { ElectronAuthProvider } from '@twurple/auth-electron';
+import {ApiClient, type HelixPrivilegedUser} from '@twurple/api';
+import {ElectronAuthProvider} from '@twurple/auth-electron';
 
 export default class TwitchAuth {
     constructor(
         /**
          * Twitch client ID
-         * 
+         *
          * @property
          * @protected
          */
         protected clientId = import.meta.env.VITE_TWITCH_CLIENT_ID,
         /**
          * Twitch auth redirect uri
-         * 
+         *
          * @property
          * @protected
          */
         protected redirectUri = import.meta.env.VITE_TWITCH_REDIRECT_URI,
         /**
          * Authentication provider
-         * 
+         *
          * @property
          * @public
          */
         public provider = new ElectronAuthProvider({
             clientId: clientId,
-            redirectUri: redirectUri
+            redirectUri: redirectUri,
         }),
         /**
          * Provider client
-         * 
+         *
          * @property
          * @public
          */
         public client = new ApiClient({
-            authProvider: provider
+            authProvider: provider,
         }),
         /**
          * Is app authenticated?
-         * 
+         *
          * @property
          * @public
          */
         public isAuthenticated = false,
         /**
          * Current authenticated user
-         * 
+         *
          * @property
          * @public
          */
-        public user?: HelixPrivilegedUser
-    ) { 
+        public user?: HelixPrivilegedUser,
+    ) {
         this.provider.allowUserChange();
     }
 
@@ -63,19 +63,19 @@ export default class TwitchAuth {
             'chat:edit',
             'chat:read',
             'whispers:read',
-            'whispers:edit'
-        ])
+            'whispers:edit',
+        ]);
 
         const user = await this.client.users.getMe();
 
         this.isAuthenticated = true;
         this.user = user;
-        
+
         return this.getUser() as NonNullable<User>;
     }
-    
+
     public getUser() {
-        if( ! this.user ) {
+        if (!this.user) {
             return null;
         }
 
@@ -89,6 +89,6 @@ export default class TwitchAuth {
             offlinePlaceholderUrl: this.user?.offlinePlaceholderUrl,
             email: this.user?.email,
             creationDate: this.user?.creationDate,
-        }
+        };
     }
 }

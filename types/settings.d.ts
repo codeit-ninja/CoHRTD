@@ -1,4 +1,4 @@
 interface SettingsResponseStatus {
-    status: 'OK'|'ERROR';
+    status: 'OK' | 'ERROR';
     message: string;
 }

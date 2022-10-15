@@ -5,13 +5,13 @@ export default class Stats {
         public wins: number,
         public losses: number,
         public streak: number,
-        public disputes:number,
+        public disputes: number,
         public drops: number,
         public rank: number,
         public ranktotal: number,
         public ranklevel: number,
         public regionrank: number,
         public regionranktotal: number,
-        public lastmatchdate: number
+        public lastmatchdate: number,
     ) {}
 }

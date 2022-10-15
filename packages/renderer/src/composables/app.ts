@@ -1,15 +1,15 @@
 import type Auth from '../classes/auth';
-import { isAuthenticated, getCurrentUser } from '#preload';
-import { inject } from 'vue';
-import { useRouter } from 'vue-router';
-import { state } from 'store/app';
+import {isAuthenticated, getCurrentUser} from '#preload';
+import {inject} from 'vue';
+import {useRouter} from 'vue-router';
+import {state} from 'store/app';
 
 export const provideAuth = async () => {
     return {
         isAuthenticated: await isAuthenticated(),
-        user: await isAuthenticated() ? await getCurrentUser() : null
-    }
-}
+        user: (await isAuthenticated()) ? await getCurrentUser() : null,
+    };
+};
 
 export const useAuth = () => inject('auth') as Auth;
 
@@ -19,11 +19,11 @@ export const doStartUp = async () => {
 
     await auth.login();
 
-    if( ! auth.isLoggedIn ) {
-        router.replace({ name: 'Configure' });
+    if (!auth.isLoggedIn) {
+        router.replace({name: 'Configure'});
     } else {
-        router.replace({ name: 'Dashboard' });
+        router.replace({name: 'Dashboard'});
     }
 
     state.auth.value = auth;
-}
+};

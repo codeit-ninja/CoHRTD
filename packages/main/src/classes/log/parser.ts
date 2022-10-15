@@ -1,5 +1,5 @@
-import { readFileSync } from 'fs';
-import { difference } from 'lodash';
+import {readFileSync} from 'fs';
+import {difference} from 'lodash';
 import Line from './line';
 
 export default class LogParser {
@@ -30,22 +30,22 @@ export default class LogParser {
     protected intervalHandle: NodeJS.Timer;
 
     protected constructor(readonly path: string) {
-        const handle = this.intervalHandle = setInterval(() => {
+        const handle = (this.intervalHandle = setInterval(() => {
             try {
-                this.lines = readFileSync(path, { encoding: 'utf8' }).split('\r\n');
+                this.lines = readFileSync(path, {encoding: 'utf8'}).split('\r\n');
                 this.unprocessed = difference(this.lines, this.processed);
-                
+
                 // process the lines here
                 this.unprocessed.forEach(line => {
                     new Line(line);
 
-                    this.processed.push(line)
+                    this.processed.push(line);
                 });
-            } catch(e) {
+            } catch (e) {
                 console.log(e);
                 clearInterval(handle);
             }
-        }, 1000)
+        }, 1000));
     }
 
     public static load(path: string) {

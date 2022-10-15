@@ -1,13 +1,13 @@
-import ElectronStore from "electron-store";
+import ElectronStore from 'electron-store';
 
 interface ISettings {
-  check: boolean;
+    check: boolean;
 }
 
 const settings = new ElectronStore<ISettings>({
-  defaults: {
-    check: false,
-  },
+    defaults: {
+        check: false,
+    },
 });
 
 export default settings;

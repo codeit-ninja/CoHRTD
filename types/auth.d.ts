@@ -1,5 +1,5 @@
 declare module 'App/Core/Auth' {
-    import type { LeaderboardStats } from 'App/Core/Relic';
+    import type {LeaderboardStats} from 'App/Core/Relic';
     /*
     |--------------------------------------------------------------------------
     | User

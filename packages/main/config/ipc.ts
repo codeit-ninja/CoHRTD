@@ -15,10 +15,6 @@ import IPCRelic from '../src/classes/ipc/relic';
 | messages from the renderer process
 |
 */
-export const ipcModules: IPCContract[] = [
-    new IPCSettings(),
-    new IPCAuth(),
-    new IPCRelic()
-]
+export const ipcModules: IPCContract[] = [new IPCSettings(), new IPCAuth(), new IPCRelic()];
 
 export default ipcModules;

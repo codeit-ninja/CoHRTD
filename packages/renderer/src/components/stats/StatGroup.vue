@@ -2,7 +2,10 @@
     <div class="row g-0 stats-group">
         <div class="col-1">
             <span>
-                <RankIcon :rank="group.stats.ranklevel" :faction="faction ?? Factions.Us" />
+                <RankIcon
+                    :rank="group.stats.ranklevel"
+                    :faction="faction ?? Factions.Us"
+                />
             </span>
         </div>
         <div class="col-3">
@@ -38,18 +41,20 @@
     </div>
 </template>
 <script lang="ts" setup>
-    import type { LeaderboardStats } from 'App/Core/Relic';
-    import { computed } from 'vue';
-    import { factions, type Factions } from 'composables/helpers';
+import type {LeaderboardStats} from 'App/Core/Relic';
+import {computed} from 'vue';
+import {factions, type Factions} from 'composables/helpers';
 
-    import RankIcon from './RankIcon.vue';
-    import RankType from './RankType.vue';
-    import RankArmy from './RankArmy.vue';
+import RankIcon from './RankIcon.vue';
+import RankType from './RankType.vue';
+import RankArmy from './RankArmy.vue';
 
-    interface StatGroup {
-        stats: LeaderboardStats
-    }
+interface StatGroup {
+    stats: LeaderboardStats;
+}
 
-    const group = defineProps<StatGroup>();
-    const faction = computed(() => factions.find(faction => faction.ids.includes(group.stats.leaderboardId))?.faction);
+const group = defineProps<StatGroup>();
+const faction = computed(
+    () => factions.find(faction => faction.ids.includes(group.stats.leaderboardId))?.faction,
+);
 </script>

@@ -1,6 +1,6 @@
 declare module 'App/Core/Game' {
-    import type { MemberProfile, LeaderboardStats } from 'App/Core/Relic'
-    import type { Dictionary } from 'lodash'
+    import type {MemberProfile, LeaderboardStats} from 'App/Core/Relic';
+    import type {Dictionary} from 'lodash';
 
     interface CoHPlayerPopulated {
         playerIndex: number;
@@ -33,11 +33,11 @@ declare module 'App/Core/Game' {
         playerPopulated: CoHPlayerPopulated;
         playerSteamInfo: CoHPlayerSteamInfo;
         cpuPlayerType: string;
-        gameState: 'ONLINE'|'OFFLINE'|'IN_GAME';
+        gameState: 'ONLINE' | 'OFFLINE' | 'IN_GAME';
     }
 
     interface CoHGameState {
-        state: 'ONLINE'|'OFFLINE'|'IN_GAME';
+        state: 'ONLINE' | 'OFFLINE' | 'IN_GAME';
         started: boolean;
         players: Partial<CoHPlayerWithStats>[];
         map?: string;

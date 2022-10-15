@@ -10,14 +10,15 @@
                         <span class="small">Status</span>
                     </div>
                     <div class="col-8">
-                        <span 
+                        <span
                             class="badge"
                             :class="{
-                                'bg-danger': ! gameStore.game || gameStore.game?.state === 'OFFLINE',
+                                'bg-danger': !gameStore.game || gameStore.game?.state === 'OFFLINE',
                                 'bg-success': gameStore.game && gameStore.game.state === 'ONLINE',
                                 'bg-info': gameStore.game && gameStore.game.state === 'IN_GAME',
                             }"
-                        >{{ gameStore.game?.state }}</span>
+                            >{{ gameStore.game?.state }}</span
+                        >
                     </div>
                     <div class="col-4">
                         <span class="small">Twitch</span>
@@ -41,7 +42,10 @@
                 </div>
             </div>
             <div class="col-12 col-sm-6 text-end">
-                <img :src="authStore.user?.avatarfull" class="img-thumbnail" />
+                <img
+                    :src="authStore.user?.avatarfull"
+                    class="img-thumbnail"
+                />
             </div>
             <div class="stats col-12 mt-5">
                 <LeaderboardStats />
@@ -50,25 +54,25 @@
     </div>
 </template>
 <script lang="ts">
-    import { settings } from 'store/settings';
-    import LeaderboardStats from '../components/LeaderboardStats.vue';
-    import { useAuthStore } from 'store/auth';
-    import { useGameStore } from 'store/game';
-    import { defineComponent } from 'vue';
+import {settings} from 'store/settings';
+import LeaderboardStats from '../components/LeaderboardStats.vue';
+import {useAuthStore} from 'store/auth';
+import {useGameStore} from 'store/game';
+import {defineComponent} from 'vue';
 
-    export default defineComponent({
-        components: {
-            LeaderboardStats
-        },
-        setup() {
-            const authStore = useAuthStore();
-            const gameStore = useGameStore();
-            console.log(authStore)
-            return {
-                settings,
-                authStore,
-                gameStore
-            }
-        }
-    })
+export default defineComponent({
+    components: {
+        LeaderboardStats,
+    },
+    setup() {
+        const authStore = useAuthStore();
+        const gameStore = useGameStore();
+        console.log(authStore);
+        return {
+            settings,
+            authStore,
+            gameStore,
+        };
+    },
+});
 </script>

@@ -1,12 +1,12 @@
-import type { CoHGameEvents } from 'App/Core/Game';
-import type { Channels } from 'App/Core/IPC';
+import type {CoHGameEvents} from 'App/Core/Game';
+import type {Channels} from 'App/Core/IPC';
 
 import Settings from './classes/settings';
 import appConfig from 'config/app';
 import Auth from './classes/auth';
 import Emittery from 'emittery';
-import { api } from './relic/api';
-import { ipcMain, type IpcMainInvokeEvent } from 'electron';
+import {api} from './relic/api';
+import {ipcMain, type IpcMainInvokeEvent} from 'electron';
 import Game from './classes/game/game';
 
 class Core {
@@ -86,5 +86,11 @@ export interface App extends Core {}
 export const app = new Core();
 export const IPC = {
     // @ts-ignore
-    handle: <T extends keyof Channels>(handle: T, listener: (event: IpcMainInvokeEvent, ...args: Parameters<Channels[T]>) => ReturnType<Channels[T]>) => ipcMain.handle(handle, listener)
-}
+    handle: <T extends keyof Channels>(
+        handle: T,
+        listener: (
+            event: IpcMainInvokeEvent,
+            ...args: Parameters<Channels[T]>
+        ) => ReturnType<Channels[T]>,
+    ) => ipcMain.handle(handle, listener),
+};

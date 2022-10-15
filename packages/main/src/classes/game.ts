@@ -1,5 +1,5 @@
 import type Emittery from 'emittery';
-import type { CoHGameEvents } from 'App/Core/Game';
+import type {CoHGameEvents} from 'App/Core/Game';
 import Lobby from './game/lobby';
 
 export default class Game {
@@ -9,13 +9,13 @@ export default class Game {
         events.on('populating', () => this.createLobby());
 
         events.on('gameStarted', () => this.lobby?.evaluateLobby());
-        events.on('playerPopulated', (player) => this.lobby?.addTempPopulatedPlayer(player));
-        events.on('playerSteamInfo', (player) => this.lobby?.addTempPlayerSteamInfo(player));
-        events.on('gameMap', (map) => this.lobby?.setMap(map));
-        events.on('gameState', (state) => this.lobby?.setState(state));
-        
+        events.on('playerPopulated', player => this.lobby?.addTempPopulatedPlayer(player));
+        events.on('playerSteamInfo', player => this.lobby?.addTempPlayerSteamInfo(player));
+        events.on('gameMap', map => this.lobby?.setMap(map));
+        events.on('gameState', state => this.lobby?.setState(state));
+
         /**
-         * @TODO for the future 
+         * @TODO for the future
          */
         //events.on('cpuPlayerType', (difficulty) => this.lobby?.setCpuDifficultyLevel(difficulty));
 

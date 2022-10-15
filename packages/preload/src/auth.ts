@@ -1,4 +1,4 @@
-import { request } from './ipc';
+import {request} from './ipc';
 
 export function isAuthenticated() {
     return request('needs-auth-setup');

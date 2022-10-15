@@ -1,11 +1,11 @@
-import type { AuthUser } from 'App/Core/Auth';
-import { api } from '../relic/api';
-import { loadSettings } from './settings';
+import type {AuthUser} from 'App/Core/Auth';
+import {api} from '../relic/api';
+import {loadSettings} from './settings';
 
 export default class Auth {
     /**
      * Current logged in user
-     * 
+     *
      * @property
      * @public
      */
@@ -13,13 +13,13 @@ export default class Auth {
 
     /**
      * Check if a steamId exists, this is used to authorize user
-     * 
+     *
      * @returns `boolean`
      */
     public hasSession() {
-        const { steamId } = loadSettings();
+        const {steamId} = loadSettings();
 
-        if( ! steamId ) {
+        if (!steamId) {
             return false;
         }
 
@@ -28,19 +28,19 @@ export default class Auth {
 
     /**
      * Returns current session user
-     * 
+     *
      * @returns `AuthUser`
      */
     public async getSession() {
-        const { steamId } = loadSettings();
+        const {steamId} = loadSettings();
 
-        return await api.getUser(steamId)
+        return await api.getUser(steamId);
     }
 
     /**
      * Login
-     * 
-     * @param steamId 
+     *
+     * @param steamId
      * @returns `AuthUser`
      */
     public async login(steamId: string) {
@@ -49,24 +49,24 @@ export default class Auth {
 
     /**
      * Set current logged in user
-     * 
-     * @param user 
+     *
+     * @param user
      * @returns `AuthUser`
      */
     public setUser(user: AuthUser) {
-        return this.user = user;
+        return (this.user = user);
     }
 
     /**
-     * Call this function ONLY after 
+     * Call this function ONLY after
      * user has logged in!
-     * 
+     *
      * @returns `AuthUser`
      */
     public getCurrentUser() {
         return this.user as AuthUser;
     }
-    
+
     public get isLoggedIn() {
         return !!this.user;
     }

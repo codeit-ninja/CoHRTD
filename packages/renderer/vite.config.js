@@ -4,7 +4,7 @@ import {chrome} from '../../.electron-vendors.cache.json';
 import {join} from 'path';
 import vue from '@vitejs/plugin-vue';
 import {renderer} from 'unplugin-auto-expose';
-import VueTypeImports from 'vite-plugin-vue-type-imports'
+import VueTypeImports from 'vite-plugin-vue-type-imports';
 
 const PACKAGE_ROOT = __dirname;
 /**
@@ -12,43 +12,43 @@ const PACKAGE_ROOT = __dirname;
  * @see https://vitejs.dev/config/
  */
 const config = {
-  mode: process.env.MODE,
-  root: PACKAGE_ROOT,
-  resolve: {
-    alias: {
-      '/@/': join(PACKAGE_ROOT, 'src') + '/',
-      'store/': join(PACKAGE_ROOT, 'src', 'store') + '/',
-      'composables/': join(PACKAGE_ROOT, 'src', 'composables') + '/',
-      'types': join(PACKAGE_ROOT, 'src', 'types') + '/'
+    mode: process.env.MODE,
+    root: PACKAGE_ROOT,
+    resolve: {
+        alias: {
+            '/@/': join(PACKAGE_ROOT, 'src') + '/',
+            'store/': join(PACKAGE_ROOT, 'src', 'store') + '/',
+            'composables/': join(PACKAGE_ROOT, 'src', 'composables') + '/',
+            types: join(PACKAGE_ROOT, 'src', 'types') + '/',
+        },
     },
-  },
-  base: '',
-  server: {
-    fs: {
-      strict: true,
+    base: '',
+    server: {
+        fs: {
+            strict: true,
+        },
     },
-  },
-  build: {
-    sourcemap: true,
-    target: `chrome${chrome}`,
-    outDir: 'dist',
-    assetsDir: '.',
-    rollupOptions: {
-      input: join(PACKAGE_ROOT, 'index.html'),
+    build: {
+        sourcemap: true,
+        target: `chrome${chrome}`,
+        outDir: 'dist',
+        assetsDir: '.',
+        rollupOptions: {
+            input: join(PACKAGE_ROOT, 'index.html'),
+        },
+        emptyOutDir: true,
+        reportCompressedSize: false,
     },
-    emptyOutDir: true,
-    reportCompressedSize: false,
-  },
-  test: {
-    environment: 'happy-dom',
-  },
-  plugins: [
-    vue(),
-    VueTypeImports(),
-    renderer.vite({
-      preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
-    }),
-  ],
+    test: {
+        environment: 'happy-dom',
+    },
+    plugins: [
+        vue(),
+        VueTypeImports(),
+        renderer.vite({
+            preloadEntry: join(PACKAGE_ROOT, '../preload/src/index.ts'),
+        }),
+    ],
 };
 
 export default config;
